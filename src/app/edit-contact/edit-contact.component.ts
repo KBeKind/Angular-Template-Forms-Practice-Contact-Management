@@ -8,9 +8,10 @@ import {
   phoneTypeValues,
 } from '../contacts/contact.model';
 import { ContactsService } from '../contacts/contacts.service';
+import { RestrictedWordsValidator } from '../validators/restricted-words-validator.directive';
 
 @Component({
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RestrictedWordsValidator],
   standalone: true,
   templateUrl: './edit-contact.component.html',
   styleUrls: ['./edit-contact.component.css'],
