@@ -1,0 +1,16 @@
+<ul *ngIf="showAllIcons">
+  <li *ngFor="let icon of profileIcons">
+    <img
+      [src]="'/assets/profile/' + icon"
+      [alt]="icon"
+      (click)="iconSelected(icon)"
+      [class.selected]="icon === selectedIcon"
+    />
+  </li>
+</ul>
+<img
+  *ngIf="!showAllIcons"
+  [src]="'/assets/profile/' + selectedIcon"
+  [alt]="selectedIcon"
+  (click)="showAllIcons = true"
+/>

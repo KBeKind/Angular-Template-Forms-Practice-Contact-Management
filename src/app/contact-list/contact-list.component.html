@@ -3,9 +3,7 @@
     <img src="/assets/plus-no-circle.png" class="button-image" />
     Add Contact
   </button>
-  <h2>
-    Favorite Contacts
-  </h2>
+  <h2>Favorite Contacts</h2>
   <table>
     <thead>
       <th>Name</th>
@@ -17,21 +15,26 @@
         <td class="center" colspan="3">You have no favorite contacts</td>
       </tr>
       <ng-container *ngIf="favoriteContacts.length > 0">
-        <tr *ngFor="let contact of favoriteContacts" [routerLink]="['/contacts/edit', contact.id]">
-          <td>{{contact.firstName}} {{contact.lastName}}</td>
-          <td><span *ngIf="contact.phone">{{contact.phone.phoneNumber}}</span></td>
+        <tr
+          *ngFor="let contact of favoriteContacts"
+          [routerLink]="['/contacts/edit', contact.id]"
+        >
+          <td>{{ contact.firstName }} {{ contact.lastName }}</td>
+          <td>
+            <span *ngIf="contact.phones[0]">{{
+              contact.phones[0].phoneNumber
+            }}</span>
+          </td>
           <td *ngIf="contact.address">
-            {{contact.address.streetAddress}}, {{contact.address.city}},
-            {{contact.address.state}},
-            {{contact.address.postalCode}}
+            {{ contact.address.streetAddress }}, {{ contact.address.city }},
+            {{ contact.address.state }},
+            {{ contact.address.postalCode }}
           </td>
         </tr>
       </ng-container>
     </tbody>
   </table>
-  <h2>
-    All Contacts
-  </h2>
+  <h2>All Contacts</h2>
   <table>
     <thead>
       <th>Name</th>
@@ -39,17 +42,24 @@
       <th>Address</th>
     </thead>
     <tbody>
-      <tr *ngIf=" contacts.length===0">
+      <tr *ngIf="contacts.length === 0">
         <td class="center" colspan="3">You have no contacts</td>
       </tr>
       <ng-container *ngIf="contacts.length > 0">
-        <tr *ngFor="let contact of contacts" [routerLink]="['/contacts/edit', contact.id]">
-          <td>{{contact.firstName}} {{contact.lastName}}</td>
-          <td><span *ngIf="contact.phone">{{contact.phone.phoneNumber}}</span></td>
+        <tr
+          *ngFor="let contact of contacts"
+          [routerLink]="['/contacts/edit', contact.id]"
+        >
+          <td>{{ contact.firstName }} {{ contact.lastName }}</td>
+          <td>
+            <span *ngIf="contact.phones[0]">{{
+              contact.phones[0].phoneNumber
+            }}</span>
+          </td>
           <td *ngIf="contact.address">
-            {{contact.address.streetAddress}}, {{contact.address.city}},
-            {{contact.address.state}},
-            {{contact.address.postalCode}}
+            {{ contact.address.streetAddress }}, {{ contact.address.city }},
+            {{ contact.address.state }},
+            {{ contact.address.postalCode }}
           </td>
         </tr>
       </ng-container>

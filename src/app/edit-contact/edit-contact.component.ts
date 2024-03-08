@@ -10,8 +10,17 @@ import {
 import { ContactsService } from '../contacts/contacts.service';
 import { RestrictedWordsValidator } from '../validators/restricted-words-validator.directive';
 
+import { DateValueAccessorDirective } from '../date-value-accessor/date-value-accessor.directive';
+import { ProfileIconSelectorComponent } from '../profile-icon-selector/profile-icon-selector.component';
+
 @Component({
-  imports: [CommonModule, FormsModule, RestrictedWordsValidator],
+  imports: [
+    CommonModule,
+    FormsModule,
+    RestrictedWordsValidator,
+    DateValueAccessorDirective,
+    ProfileIconSelectorComponent,
+  ],
   standalone: true,
   templateUrl: './edit-contact.component.html',
   styleUrls: ['./edit-contact.component.css'],
@@ -22,15 +31,18 @@ export class EditContactComponent implements OnInit {
 
   contact: Contact = {
     id: '',
+    icon: '',
     personal: false,
     firstName: '',
     lastName: '',
-    dateOfBirth: '',
+    dateOfBirth: null,
     favoritesRanking: 0,
-    phone: {
-      phoneNumber: '',
-      phoneType: '',
-    },
+    phones: [
+      {
+        phoneNumber: '',
+        phoneType: '',
+      },
+    ],
     address: {
       streetAddress: '',
       city: '',
@@ -59,8 +71,12 @@ export class EditContactComponent implements OnInit {
   }
 
   saveContact(form: NgForm) {
-    this.contactsService.saveContact(form.value).subscribe({
+    this.contactsService.saveContact(this.contact).subscribe({
       next: () => this.router.navigate(['/contacts']),
     });
+  }
+
+  addPhone() {
+    this.contact.phones.push({ phoneNumber: '', phoneType: '' });
   }
 }
